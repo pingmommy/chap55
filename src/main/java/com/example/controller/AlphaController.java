@@ -61,14 +61,13 @@ public class AlphaController {
 	void race(Model model) {
 		var rect = new ArrayList<ArrayList<Alpha>>();
 		
-		for(int i=0; i<20;i++) {
-			rect.add(new ArrayList<Alpha>());
-			for(int j=0; j<40;j++) {
-				rect.get(i).add(new Alpha().builder().bg(Color.Black).fg(Color.Black).ch('A').build());
+		for(var i =0; i<20; i++) {
+				rect.add(new ArrayList<Alpha>());
+			for(var j =0; j<40; j++) {
+				rect.get(i).add(new Alpha());
 			}
 		}
-		
-		model.addAttribute("race", rect);
+		model.addAttribute("surface", rect);
 	}
 	
 	@ResponseBody
