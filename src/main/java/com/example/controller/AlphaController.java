@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,6 +73,23 @@ public class AlphaController {
 	@ResponseBody
 	@GetMapping("/racing")
 	Alpha racing() {
+
 		return new Alpha();
 	}
+	
+	
+	@GetMapping("/cross")
+	void cross(Model model) {
+		var alphas = new HashMap<Integer, ArrayList<Alpha>>();
+		
+		for( var i =0; i<20; i++) {
+			alphas.put(i, new ArrayList<Alpha>());
+			for(var j = 0; j<40;j++) {
+				alphas.get(i).add(new Alpha());
+			}
+		}
+		
+		model.addAttribute("surface", alphas);
+	}
+	
 }

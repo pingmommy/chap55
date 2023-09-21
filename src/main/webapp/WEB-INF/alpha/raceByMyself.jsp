@@ -25,30 +25,35 @@ td {
 	text-align: right;
 }
 
-section > table {
+section > table, ul{
 	float: left;
-	margin: 10px;
 }
+
 </style>
 
 <script type="text/javascript">
 window.onload = function() {
 	 
 	startbtn.onclick = e => {
-				
+		
+		
 		fetch('/alpha/data')
 		.then(r => r.json())
 		.then(alpha => {
 			console.log(alpha)
-			race(alpha);					
+			race(alpha);		
+			
 		}); }
+	
+	
+	
 	
 }
 
 function race(alpha){
 	
 	console.log(alpha);
-	//let cnt =0;
+	let cnt = 0;
 	let speed = Math.random()*1000+10;
 	alpha.line =1;
 	alpha.column =1;
@@ -60,35 +65,41 @@ function race(alpha){
 	td.style.color = alpha.fg;
 	td.style.background = alpha.bg;
 	td.innerText = alpha.ch;
-
 	
-	 let tr = document.createElement('tr');
-	 let tdNo = document.createElement('td');
-	 let tdAlpha = document.createElement('td');
-	 let tdCount = document.createElement('td');
-		 
-	 tr.append(tdNo);
-	 tr.append(tdAlpha);
-	 tr.append(tdCount);
 	
-	 
-	 stat.tBodies[0].append(tr);
+	let table = document.getElementById('alp');
 	
-	 tdNo.innerText = tr.parentElement.rows.length;
-	 tdAlpha.innerText = alpha.ch;
-	 tdAlpha.style.color = alpha.fg;
-	 tdAlpha.style.background = alpha.bg;
-	 tdCount.innerText = 0;
-	 
-	 
+	
+	let x = document.createElement('li');
+	x.innerText = alpha.ch;
+	x.style.color = alpha.fg;
+	table.appendChild(x);
+		
+	let roundTable = document.getElementById('roundCount');
+	let y = document.createElement('li');
+	roundTable.appendChild(y);
+	y.innerText = 0;
+	
+	
 	
 	
 	setTimeout(function move() {
-
+		
+		//cnt += cnt;
+	//console.log(cnt +", speed" + speed);
+	//console.log(cnt);
+	
 	let td = table1.rows[alpha.line-1].cells[alpha.column-1]
 	td.style.color = 'black';
 	td.style.background = 'black';
-
+	
+	
+	
+/* 	if(cnt == 3){
+		console.log("DONE!!!")
+		//clearTimeout(id);
+	} */
+		
 	switch(direction){
 	case 0: //right
 		alpha.column++;
@@ -107,7 +118,11 @@ function race(alpha){
 	if(alpha.line == 1 && alpha.column == 1){
 		direction =0; //right
 		round.innerText = ++round.innerText;
-		tdCount.innerText = ++tdCount.innerText;
+		cnt++;
+	//	console.log(cnt);
+		
+	
+	y.innerText = ++y.innerText;
 	
 		
 	}
@@ -120,7 +135,9 @@ function race(alpha){
 	else if(alpha.line == 1 && alpha.column == 40){
 		direction =3; //down		
 	}
-
+	
+	//console.log('line'+alpha.line);
+	//console.log(alpha.column);
 	td = table1.rows[alpha.line-1].cells[alpha.column-1]
 	td.style.color = alpha.fg;
 	td.style.background = alpha.bg;
@@ -138,13 +155,15 @@ function race(alpha){
 }
 </script>
 
+
 </head>
 <body>
 <h1>Ajax = fetch 활용</h1>
 <hr>
 <button id="startbtn">start</button>
+<button>run</button>
 
-<hr>
+
 <table border="1px" width="400" >
 	<th>round</th><th>count</th><th>second</th>
 <thead>
@@ -153,6 +172,8 @@ function race(alpha){
 	<td id="round">0</td><td id="count">0</td><td id="ellipse">0</td>
 </tbody>
 </table>
+<hr>
+
 <section>
 <table id="table1" onmousedown="event.preventDefault();" oncontextmenu="event.preventDefault();">
 <tbody>
@@ -166,15 +187,21 @@ function race(alpha){
 	</c:forEach>
 </tbody>
 </table>
-<table width="400" border="1px" id="stat">
- <thead>
- <tr>
- 	<th>no</th><th>Alpha</th><th>roundCount</th>
- </tr>
- </thead>
- <tbody>
- </tbody>
-</table>
+<ul>
+	<li>
+		<h3>alpha</h3>
+		<ol id="alp">
+			
+		</ol>
+	</li>
+	<br>
+	<li>
+		<h3>round</h3>
+		<ol id="roundCount">
+			
+		</ol>
+	</li>
+</ul>
 </section>
 </body>
 </html>
