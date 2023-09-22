@@ -2,6 +2,7 @@ package com.example.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -92,4 +93,24 @@ public class AlphaController {
 		model.addAttribute("surface", alphas);
 	}
 	
+	
+	@GetMapping("/zigzag")
+	void zigzag(Model model) {
+		var alphas = new HashSet< ArrayList<Alpha>>();
+		
+		for(var i =0; i<20; i++) {
+			var list =  new ArrayList<Alpha>();
+			
+			for(var j =0; j<40; j++) {
+				list.add(new Alpha());
+			}
+			alphas.add(list);
+		}
+	
+	
+		
+		model.addAttribute("surface", alphas);
+	}
+
+
 }

@@ -41,14 +41,14 @@ class Cross{
 	}
 
    show(){
-	 let td = surface.rows[this.alpha.line].cells[this.alpha.column]; 
+	 let td = surface.rows[this.alpha.line-1].cells[this.alpha.column-1]; 
    	 td.style.color = this.alpha.fg;	
    	 td.style.background = this.alpha.bg;	
    	 td.innerText = this.alpha.ch;	
    }
    
    hide(){
-	   let td = surface.rows[this.alpha.line].cells[this.alpha.column]; 
+	   let td = surface.rows[this.alpha.line-1].cells[this.alpha.column-1]; 
 	   	 td.style.color = 'black';	
 	   	 td.style.background ='black';
 	    td.innerText = this.alpha.ch;
@@ -102,8 +102,7 @@ class Cross{
 			 break;
 		 }
 		 
-		 this.move();
-		 
+		
 		}
 	}
   
