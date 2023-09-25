@@ -37,7 +37,7 @@ class Cross{
 	
 	constructor(){
 		this.direction =parseInt(Math.random()*4);
-		this.speed = parseInt(Math.random()*300+10);
+		this.speed = Math.random()*200+10;
 	}
 
    show(){
@@ -51,36 +51,35 @@ class Cross{
 	   let td = surface.rows[this.alpha.line-1].cells[this.alpha.column-1]; 
 	   	 td.style.color = 'black';	
 	   	 td.style.background ='black';
-	    td.innerText = this.alpha.ch;
+	   
    }
    
    
    move(){
-	  // console.log(this.direction)
-	   // this.hide();
-	   switch(1){
-	   case 0: //left
-	   		this.alpha.column++;
-		   break;
-	   case 1: //down
-		   this.alpha.line++;
-	       break;
-	   case 2: //right
-		   this.alpha.column--;
-	       break;
-	   case 3: //up
-		  this.alpha.line--;
-	      break;
+	 
+	    this.hide();
+	   switch(this.direction){
+	   case 0:	// TOP
+			this.alpha.line--;
+			break;
+		case 1:	// RIGHT
+			this.alpha.column++;
+			break;	
+		case 2:	// BOTTOM
+			this.alpha.line++;
+			break;
+		case 3:	// LEFT
+			this.alpha.column--;
+			break;
 	   }
 	   
-	  console.log( + 'move');
 	   
-	  if(this.alpha.column==1 || this.alpha.line==1 || this.alpha.column==28 || this.alpha.line==13){
+	  if(this.alpha.column==0 || this.alpha.line==0 || this.alpha.column==41 || this.alpha.line==21){
 		   return false;
-	   }else{
+	   }
 	     this.show();
 	     return true;
-	   }
+	   
    }
 	
 	async run(){
@@ -96,7 +95,6 @@ class Cross{
 		 
 		
 		 await sleep(this.speed);
-		 console.log(this.alpha);
 		 
 		 if(!this.move()){
 			 break;
