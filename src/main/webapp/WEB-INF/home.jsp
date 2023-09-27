@@ -8,13 +8,16 @@
 <style type="text/css">
 
 ul{
-	border: 1px solid lightblue;
+	border: 2px solid red;
 	display: flex;
 	list-style: none;
 	padding: 0;
 	font-size: 20pt;
 	height: 90px;
-	
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	margin: 0;
 	}
 
 li{
@@ -39,6 +42,34 @@ iframe {
 	border: 1px solid red;
 }
 
+body {
+	margin-top: 150px;
+}
+
+.perspective {
+	border: 5px solid salmon;
+	display: inline-block;
+	perspective:500px;
+	position: relative;
+	top:0px;
+}
+
+.cube {
+	border: 5px solid gray;
+	display: inline-block;
+	transform-style: preserve-3d;
+	position: relative;
+	top:0px;
+}
+
+.base{
+	border: 5px solid pink;
+	width: 50px;
+	height: 50px;
+	position:absolute;
+	transform:translateY(100px);
+	top:0px;
+}
 </style>
 <script type="text/javascript">
 function resize(){
@@ -58,7 +89,14 @@ window.onload = () => {
 <body>
 <hr>
 <ul>
-	<li><img width="50" src="/media/fubao.jpg" ></li>
+	<!-- <li><img width="50" src="/media/fubao.jpg" ></li> -->
+	<li style="padding-top:5px;">
+	<section class="perspective">
+		<article class="cube">
+		 	<div class="base"></div>
+		</article>
+	</section>
+	</li>
 	<li><a target="content" href="/alpha/fill">fill</a></li>
 	<li><a target="content" href="/alpha/cross">cross</a></li>
 	<li><a target="content" href="/alpha/race">race</a></li>

@@ -5,31 +5,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>fill</title>
+<title>ani.fill</title>
 <style type="text/css">
 
 table {
 	border-collapse:collapse;
  	font-family: monospace;
- 	font-size: 2em;
+ 	font-size: 1.5em;
  	/* border-left:15px solid green; */
  	background: url("/media/favicon.png");
  	background-repeat: repeat-x;
 }
+
+#surface td {
+ 	position: relative;
+ 	transition : left 2s, transform 4s; 	
+ 	
+ 	top: 0px;
+ 	left:0px;
+}
+
+
 </style>
 
 <script type="text/javascript">
 
 window.onload = function() {
-	
-	// return false => 디폴트무브를 막을 수 있는데, 버블링이 있으면 작동하지 않는다. 
-	/*
-	화면을 드래그하면 화면이 까매도 글자가 다 보여서 디폴트 무브를 막아서 해결함. 
-	surface.onmousedown = function(e){
-		e.preventDefault();
-	} */
-	
-
 	
 	surface.oncontextmenu = function(e) {
 		e.preventDefault();
@@ -51,6 +52,9 @@ function startBtn_click(e){
 		
 		if(count.innerText == 800){
 			clearInterval(tid);
+			clearInterval(sid);
+			start.disabled = false;
+			clear.disabled = false;
 			return;
 		}
 			
@@ -67,13 +71,19 @@ function startBtn_click(e){
 			
 			if(td.style.color =='black' && td.style.background=='black') {
 				count.innerText = ++count.innerText;
+					
+				setTimeout(() =>{
+					td.style.left = "700px";
+					td.style.opacity="0.5";
+					td.style.transform = `rotate(\${360*10}deg)`;
+				}, 1000)
+					
 			}
+				
 			
 			td.style.background = alpha.bg;
 			td.style.color = alpha.fg;
-			td.innerText = alpha.ch;
-			
-			
+			td.innerText = alpha.ch;									
 			
 		}
 		xhr.send();
@@ -98,6 +108,9 @@ function clearBtn_click(e){
 		Array.from(row.cells).forEach(function(td) {
 			td.style.color ='black';
 			td.style.background ='black';
+			td.style.left="0px";
+			td.style.opacity="1.0"
+			
 		});
 	});
 	count.innerText =0;
@@ -109,7 +122,7 @@ function clearBtn_click(e){
 <!-- XMLHttpRequest - 웹브라우저에 기본적으로 있는 객체  -->
 </head>
 <body>
-<h1>CSS Properties(transition + position )</h1>
+<h1>Spring MVC + XMLHttpRequest</h1>
 <hr>
 <button id="start" onclick="startBtn_click(event)">start</button>
 <button id="clear" onclick="clearBtn_click(event)">clear</button>
@@ -134,25 +147,11 @@ function clearBtn_click(e){
 	<c:forEach var="row" items="${surface}">
 	<tr>
 		<c:forEach var="cells" items="${row}">
-			<td style="background:${cells.bg}; color:${cells.fg}; opacity:0.5">${cells.ch}</td>
+			<td style="background:${cells.bg}; color:${cells.fg}; opacity:1.0">${cells.ch}</td>
 		</c:forEach>
 	</tr>
 	</c:forEach>
 </tbody>
-</table>
-
-<hr>
-
-<table id="surface2">
-<c:forEach var="i" begin="0" end="19" >
-<tr>
-	<c:forEach var="j" begin="0" end="39">
-		<c:set var="c" value="${surface[i][j]}" />
-	<%--  <td style="background: ${surface[i][j].bg}">${surface[i][j].ch}</td> --%>
-	 <td style="background: ${c.bg}">${c.ch}</td>
-	</c:forEach>
-</tr>
-</c:forEach>
 </table>
 
 

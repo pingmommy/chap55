@@ -25,8 +25,9 @@ public class AlphaController {
 	@GetMapping("/fill")
 	void fill(Model model) {
 	
-	  var rect = new ArrayList<ArrayList<Alpha>>();
-		
+		/*
+		 * var rect = new ArrayList<ArrayList<Alpha>>();
+		 */		
 //	ArrayList로 작성
 //		for(int i =0; i<20; i++) {
 //			rect.add(new ArrayList<Alpha>());
