@@ -8,22 +8,23 @@
 <style type="text/css">
 
 ul{
-	border: 2px solid red;
+	/* border: 2px solid red; */
 	display: flex;
 	list-style: none;
 	padding: 0;
-	font-size: 20pt;
+	font-size: 30pt;
 	height: 90px;
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	margin: 0;
+	padding-inline-start:0px;
 	}
 
 li{
-	border: 1px solid lightblue;
-	width: 100px;
-	padding: 1em;
+	/* border: 1px solid lightblue; */
+	width: 120px;
+	padding: 10px;
 	text-align: center;
 	flex-shrink: 0;
 	
@@ -44,32 +45,82 @@ iframe {
 
 body {
 	margin-top: 150px;
+	border: 1px solid blue;
 }
 
-.perspective {
-	border: 5px solid salmon;
-	display: inline-block;
-	perspective:500px;
-	position: relative;
-	top:0px;
+.a {
+  /* border: 1px solid red; */
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  perspective: 500px;
+  top: 15px; 
+  left: 20px;
 }
 
-.cube {
-	border: 5px solid gray;
-	display: inline-block;
-	transform-style: preserve-3d;
-	position: relative;
-	top:0px;
+.b {
+ /*  border: 1px solid blue; */
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  transform-style: preserve-3d;
+  animation : rotate 5s infinite linear;
+  top: 15px; 
+  left: 20px;
 }
 
-.base{
-	border: 5px solid pink;
-	width: 50px;
-	height: 50px;
-	position:absolute;
-	transform:translateY(100px);
-	top:0px;
+.c {
+ /*  border: 1px solid green; */
+  width: 30px;
+  height: 30px;
+  position: absolute;
+ 
 }
+
+.back {
+	transform : translateZ(15px);
+	background: lightcyan;
+}
+
+.front {
+	transform : translateZ(-15px);
+	background: cornsilk;
+}
+
+.right {
+  transform: rotateY(90deg) translateZ(15px);
+  /* border: 1px dotted black; */
+  background:lightpink;
+}
+
+.left {
+ transform: rotateY(-90deg) translateZ(15px);
+  /*  border: 1px dotted purple; */
+   background: plum;
+}
+
+.top {
+ transform:rotateX(90deg) translateZ(15px);
+ background: lightgray;
+}
+
+.bottom {
+ transform: rotateX(-90deg) translateZ(15px);
+ background: lightsalmon;
+}
+
+
+@keyframes rotate {
+ 	from {
+		
+		transform: rotateX(0deg) rotateY(360deg) rotateZ(0deg);
+	}
+	
+	to {
+		transform: rotateX(360deg) rotateY(0deg) rotateZ(360deg);
+	}
+}
+
 </style>
 <script type="text/javascript">
 function resize(){
@@ -90,13 +141,17 @@ window.onload = () => {
 <hr>
 <ul>
 	<!-- <li><img width="50" src="/media/fubao.jpg" ></li> -->
-	<li style="padding-top:5px;">
-	<section class="perspective">
-		<article class="cube">
-		 	<div class="base"></div>
-		</article>
-	</section>
-	</li>
+	<li><div class="a">
+		<div class="b">
+		<div class="c"></div>
+		<div class="c back"></div>
+		<div class="c front"></div>
+		<div class="c right"></div>
+		<div class="c left"></div>
+		<div class="c top"></div>
+		<div class="c bottom"></div>
+		</div>
+	</div></li>
 	<li><a target="content" href="/alpha/fill">fill</a></li>
 	<li><a target="content" href="/alpha/cross">cross</a></li>
 	<li><a target="content" href="/alpha/race">race</a></li>

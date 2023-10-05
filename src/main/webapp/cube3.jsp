@@ -42,13 +42,14 @@
 	position: absolute;
 	top:0px;
 	left:0px; 
+}
+
+.front {
 	transform: translateZ(100px);
 }
 
 .back {
-	position: absolute;
-	top:0px;
-	left:0px; 
+	
 	transform: rotateY(180deg) translateZ(100px);
 
 }

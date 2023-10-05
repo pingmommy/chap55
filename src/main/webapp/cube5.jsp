@@ -29,12 +29,12 @@
 
 .base {
 	border: 2px solid pink;
-	width:200px;
-	height: 200px;
+	width:50px;
+	height: 50px;
 	/* background: pink; */
 	text-align: center;
-	font-size: 2em;
-	line-height: 200px;	
+	font-size: 1em;
+	line-height: 50px;	
 	
 }
 
@@ -43,39 +43,39 @@
 	top:0px;
 	left:0px; 
 	opacity:0.5;
-	box-shadow: 0px 0px 50px 10px gray;
+	box-shadow: 0px 0px 10px 5px gray;
 }
 
 .front {
 
-	transform: translateZ(100px);
+	transform: translateZ(25px);
 	background: lightpink;
 }
 
 .back {
 
-	transform: rotateY(180deg) translateZ(100px);
+	transform: rotateY(180deg) translateZ(25px);
 	background: lightgray;
 }
 
 .left {
-	transform: rotateY(-90deg) translateZ(100px);
+	transform: rotateY(-90deg) translateZ(25px);
 	background: lightsalmon;
 	
 }
 
 .right {
-	transform: rotateY(90deg) translateZ(100px);
+	transform: rotateY(90deg) translateZ(25px);
 	background: plum;
 	
 }
 
 .top {
-	transform: rotateX(90deg) translateZ(100px);	
+	transform: rotateX(90deg) translateZ(25px);	
 }
 
 .bottom {
-	transform: rotateX(-90deg) translateZ(100px);	
+	transform: rotateX(-90deg) translateZ(25px);	
 }
 
 @keyframes rotate {
@@ -96,13 +96,13 @@
 <hr>
 <section class="perspective">
 	<article class="cube">
-		<div class="base">Base</div>	
-		<div class="base front">front</div>	
-		<div class="base back">back</div>	
-		<div class="base left">left</div>	
-		<div class="base right">right</div>	
-		<div class="base top">top</div>	
-		<div class="base bottom">bottom</div>	
+		<div class="base"></div>	
+		<div class="base front"></div>	
+		<div class="base back"></div>	
+		<div class="base left"></div>	
+		<div class="base right"></div>	
+		<div class="base top"></div>	
+		<div class="base bottom"></div>	
 	</article>
 </section>
 </body>
